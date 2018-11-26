@@ -1,0 +1,190 @@
+@import 'normalize';
+@import 'roboto';
+@import 'mq';
+
+$mq-breakpoints: (
+    xs: 576px,
+    sm: 768px,
+    md: 992px,
+    lg: 1200px
+);
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #656565;
+    height: 100%;
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    @include mq($from: sm) {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 100%;
+    }
+}
+
+.top {
+    color: #000;
+    width: 100%;
+    text-align: center;
+    transition: color 230ms ease-out, text-shadow 230ms ease-out;
+    z-index: 2;
+    @include mq($from: md) {
+        top: 10%;
+    }
+    @include mq($from: lg) {
+        top: 5%;
+    }
+    h1 {
+        font-size: 2.5em;
+        text-align: center;
+        margin: 0;
+        color: inherit;
+        @include mq($from: md) {
+            font-size: 5em;
+        }
+    }
+}
+
+.logo-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    @include mq($from: sm) {
+        width: 33.3333%;
+        transform: translateX(0); // Reduce 1px width flicker. Still has a 1px black vertical line :(
+    }
+    &:hover {
+        > .logo > img {
+            transform: scale(1.05);
+        }
+    }
+    .logo {
+        display: flex;
+        height: 100%;
+        padding: 50px;
+        flex-direction: column;
+        justify-content: center;
+        text-decoration: none;
+        z-index: 2;
+        > img {
+            max-height: 200px;
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+            transition: transform 120ms ease-out;
+            @include mq($from: sm) {
+                
+            }
+        }
+        > span {
+            display: block;
+            color: #fff;
+            font-size: 3em;
+            font-weight: 100;
+            text-align: center;
+            margin: 10px 0;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+            @include mq($from: sm) {
+
+            }
+        }
+        > p {
+            text-align: center;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 400;
+        }
+        @at-root {
+            .rg#{&} {
+                color: #167130;
+            }
+            .sg#{&} {
+                color: #ffd943;
+            }
+            .gg#{&} {
+                color: #9975e1;
+                > p {
+                    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+                }
+            }
+        }
+    }
+    > .bg-blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        text-align: center;
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            @at-root {
+                .rg#{&} {
+                    background: rgba(#167130, .15);
+                }
+                .sg#{&} {
+                    background: rgba(#ffd943, .15);
+                }
+                .gg#{&} {
+                    background: rgba(#6a4da5, .15);
+                }
+            }
+        }
+        > img {
+            position: absolute;
+            object-fit: cover;
+            filter: blur(25px);
+            left: -35%;
+            @include mq($from: sm) {
+                left: 0;
+                animation: screenshotScroll 170s ease infinite;
+            }
+        }
+    }
+}
+
+@keyframes screenshotScroll {
+    0% {transform: translateX(-30%);}
+    25% {transform: translateX(-65%);}
+    50% {transform: translateX(-5%);}
+    100% {transform: translateX(-30%);}
+}
+
+.btn {
+    display: none;
+    width: 100%;
+    height: 100px;
+    color: #fff;
+    text-align: center;
+    background: #f8f891;
+    font-size: 3em;
+    line-height: 1.7em;
+    background: linear-gradient(to bottom, #f0f050, #f4dd00);
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.55);
+    &.god {
+        background: linear-gradient(to bottom, #6a4da5, #6a4da5);
+    }
+}

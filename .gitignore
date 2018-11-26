@@ -1,0 +1,4 @@
+/twig_cache/
+composer.phar
+/vendor/
+/config.php

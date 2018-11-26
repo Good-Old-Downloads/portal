@@ -1,0 +1,41 @@
+{% extends 'main.twig' %}
+
+{% block content %}
+
+{% set baseurl = base_url()|replace({'http://': '', 'https://': ''}) %}
+{% if base_url()|slice(0, 5) == "http:" %}
+  {% set scheme = "http://" %}
+{% elseif base_url()|slice(0, 5) == "https" %}
+  {% set scheme = "https://" %}
+{% endif %}
+
+<div class="container">
+  <div class="logo-container sg">
+    <a href="{{ scheme }}scenegames.{{ baseurl }}" class="logo">
+      <img src="/static/img/god.svg">
+      <span>Scene Games</span>
+      <p>Contains a growing library of PC games that are shared automatically by our bots -- no need to wait on slow humans!</p>
+    </a>
+    <div class="bg-blur"><img src="/static/img/sgbg.png"></div>
+  </div>
+  <div class="logo-container gg">
+    <a href="{{ scheme }}goggames.{{ baseurl }}" class="logo">
+      <img src="/static/img/sg.svg">
+      <span>GOG Games</span>
+      <p>Browse and download over 2,200 DRM-free games from the GOG.com catalog.</p>
+    </a>
+    <div class="bg-blur gg"><img src="/static/img/ggbg.png"></div>
+  </div>
+  <div class="logo-container rg">
+    <a href="{{ scheme }}retrogames.{{ baseurl }}" class="logo">
+      <img src="/static/img/rg.svg">
+      <span>Retro Games</span>
+      <p>A blast from the past! Here you can find ROMs for your favorite old school consoles.</p>
+    </a>
+    <div class="bg-blur"><img src="/static/img/rgbg.png"></div>
+  </div>
+{#   <div class="top">
+    <p><b>Visit our sites below where you can download free PC games from  GOG, CPY, FitGirl, CODEX, RELOADED, SKIDROW by torrents & direct links.</b></p>
+  </div> #}
+</div>
+{% endblock content %}
